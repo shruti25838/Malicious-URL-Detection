@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malicious URL Detection</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('/static/url.jpeg') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #form-container {
+      background-color: #6a7b8b;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      color: #fff;
+    }
+    #url {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+    #submitBtn {
+      padding: 10px 20px;
+      background-color: #4285f4;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #submitBtn:hover {
+      background-color: #3367d6;
+    }
+    .safe {
+      color: #4caf50;
+    }
+    .unsafe {
+      color: #f44336;
+    }
+  </style>
+</head>
+<body>
+  <div id="form-container">
+    <form method="POST">
+      <label for="url">Enter URL:</label>
+      <input type="url" id="url" name="url" required />
+      <br><br>
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    <div id="output">
+      {% if xx != -1 %}
+        {% if xx > 0.5 %}
+          <p class="safe">✅ This website is Safe ({{ xx * 100 }}% confidence)</p>
+        {% else %}
+          <p class="unsafe">⚠️ This website is Unsafe ({{ (1 - xx) * 100 }}% confidence)</p>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
